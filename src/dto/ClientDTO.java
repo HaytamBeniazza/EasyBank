@@ -1,6 +1,8 @@
 package dto;
 
-public class ClientDTO {
+import java.util.Date;
+
+public class ClientDTO extends UserDTO{
     private String code;
     private String address;
     private int userId; // Assuming this is the reference to the associated user
@@ -9,7 +11,8 @@ public class ClientDTO {
     public ClientDTO() {
     }
 
-    public ClientDTO(String code, String address, int userId) {
+    public ClientDTO(String code, String address, String firstName, String lastName, Date birthDate, int phone) {
+        super(firstName, lastName, birthDate, phone);
         this.code = code;
         this.address = address;
         this.userId = userId;
