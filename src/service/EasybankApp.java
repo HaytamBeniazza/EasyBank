@@ -25,12 +25,14 @@ public class EasybankApp {
         Scanner scanner = new Scanner(System.in);
         while(true) {
             System.out.println("\nMain Menu:");
-            System.out.println("1. Create employee");
-            System.out.println("2. Create a client");
-            System.out.println("3. Perform a transaction");
-            System.out.println("4. View account details");
-            System.out.println("5. Add new employee");
-            System.out.println("6. Exit");
+            System.out.println("1. Add employee");
+            System.out.println("2. Delete employee");
+            System.out.println("3. Get all employees");
+            System.out.println("4. Search by attribute");
+            System.out.println("5. Update employee");
+            System.out.println("6. Add a client");
+            System.out.println("7. Delete client");
+            System.out.println("8. Exit");
 
             System.out.print("Enter your choice: ");
             if (scanner.hasNextInt()) {
@@ -39,16 +41,12 @@ public class EasybankApp {
 
                 switch (choice) {
                     case 1 -> employeeService.addEmployee();
-                    case 2 -> clientService.addClient();
-                    case 3 -> System.out.println("Perform a transaction feature is not implemented yet.");
-                    case 4 -> System.out.println("View account details feature is not implemented yet.");
-                    case 5 -> System.out.println("Add new employee feature is not implemented yet.");
-                    case 6 -> {
-                        System.out.println("Exiting the application.");
-                        scanner.close(); // Close the scanner before exiting
-                        DatabaseConnection.closeConnection(); // Close the database connection
-                        System.exit(0); // Exit the application
-                    }
+                    case 2 -> employeeService.deleteEmployee();
+                    case 3 -> employeeService.listAllEmployees();
+                    case 4 -> employeeService.searchEmployees();
+                    case 5 -> employeeService.updateEmployee();
+                    case 6 -> clientService.addClient();
+                    case 7 -> clientService.deleteClient();
                     default -> System.out.println("Please choose a valid option.");
                 }
             } else {

@@ -45,7 +45,7 @@ public class EmployeeDTO extends UserDTO {
 
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
+        return "Employee{" +
                 "registerNumber='" + registerNumber + '\'' +
                 ", recruitmentDate=" + recruitmentDate +
                 ", email='" + email + '\'' +

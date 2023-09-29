@@ -50,4 +50,20 @@ public class ClientService {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    public void deleteClient(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter client code:");
+        String code = scanner.nextLine();
+
+        int rowsAffected = clientDAO.deleteClient(code);
+
+        if (rowsAffected > 0) {
+            System.out.println("Client with code " + code + " deleted successfully.");
+        } else {
+            System.out.println("Failed to delete client with code " + code);
+        }
+
+    }
 }

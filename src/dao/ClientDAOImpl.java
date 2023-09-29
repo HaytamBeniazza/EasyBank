@@ -46,4 +46,25 @@ public class ClientDAOImpl implements ClientDAO{
             return null;
         }
     }
+
+    @Override
+    public int deleteClient(String code) {
+        try {
+            // Define the SQL query to delete an employee by registerNumber
+            String deleteClientQuery = "DELETE FROM client WHERE code = ?";
+
+            // Create a PreparedStatement to execute the query
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteClientQuery);
+            preparedStatement.setString(1, code);
+
+            // Execute the deletion query
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            // Return the number of rows affected
+            return rowsAffected;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1; // Return a negative value to indicate deletion failure
+        }
+    }
 }

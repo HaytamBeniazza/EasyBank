@@ -1,5 +1,6 @@
 package dao;
 
+import dto.EmployeeDTO;
 import dto.UserDTO;
 
 import java.sql.Connection;
@@ -45,6 +46,37 @@ private Connection connection;
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    @Override
+    public UserDTO updateUser(UserDTO user) {
+        try {
+            // Define the SQL query to update an employee by registerNumber
+            String updateEmployeeQuery = "UPDATE useer SET firstname = ?, lastname = ?, birthdate = ?, phone = ? WHERE id = ?";
+
+            // Create a PreparedStatement to execute the query
+            PreparedStatement preparedStatement = connection.prepareStatement(updateEmployeeQuery);
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setDate(3, new java.sql.Date(user.getBirthDate().getTime()));
+            preparedStatement.setInt(4, user.getPhone());
+            preparedStatement.setInt(5, user.getId());
+
+            // Execute the update query
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            // Check if a row was affected (employee updated)
+            if (rowsAffected > 0) {
+                return user; // Return the updated employee
+            } else {
+                return null; // Update failed, return null
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; // Update failed due to an exception
+        }
+
     }
 
 }
