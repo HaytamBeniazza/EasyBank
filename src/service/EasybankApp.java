@@ -32,7 +32,8 @@ public class EasybankApp {
             System.out.println("5. Update employee");
             System.out.println("6. Add a client");
             System.out.println("7. Delete client");
-            System.out.println("8. Exit");
+            System.out.println("8. Get all clients");
+            System.out.println("9. Exit");
 
             System.out.print("Enter your choice: ");
             if (scanner.hasNextInt()) {
@@ -47,6 +48,7 @@ public class EasybankApp {
                     case 5 -> employeeService.updateEmployee();
                     case 6 -> clientService.addClient();
                     case 7 -> clientService.deleteClient();
+                    case 8 -> clientService.getAllClients();
                     default -> System.out.println("Please choose a valid option.");
                 }
             } else {

@@ -19,7 +19,6 @@ public class EmployeeService {
         this.employeeDAO = employeeDAO;
         this.userDAO = userDAO;
     }
-
     public void addEmployee() {
         Scanner scanner = new Scanner(System.in);
 
@@ -68,7 +67,6 @@ public class EmployeeService {
         }
 
     }
-
     public void searchEmployees() {
         Scanner scanner = new Scanner(System.in);
 
@@ -87,7 +85,6 @@ public class EmployeeService {
             }
         }
     }
-
     public void listAllEmployees() {
         List<EmployeeDTO> employees = employeeDAO.getAllEmployees();
 
@@ -107,7 +104,6 @@ public class EmployeeService {
             }
         }
     }
-
     public void updateEmployee() {
         Scanner scanner = new Scanner(System.in);
 
@@ -188,5 +184,4 @@ public class EmployeeService {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
 }

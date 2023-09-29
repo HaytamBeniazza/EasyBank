@@ -9,6 +9,7 @@ import dto.EmployeeDTO;
 import util.Tools;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClientService {
@@ -65,5 +66,18 @@ public class ClientService {
             System.out.println("Failed to delete client with code " + code);
         }
 
+    }
+
+    public void getAllClients() {
+        List<ClientDTO> clients = clientDAO.getAllClients();
+
+        if (clients.isEmpty()) {
+            System.out.println("No clients found.");
+        } else {
+            System.out.println("All Clients:");
+            for (ClientDTO client : clients) {
+                System.out.println(client);
+            }
+        }
     }
 }

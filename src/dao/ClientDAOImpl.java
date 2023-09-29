@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ClientDAOImpl implements ClientDAO{
     private Connection connection;
@@ -67,4 +70,41 @@ public class ClientDAOImpl implements ClientDAO{
             return -1; // Return a negative value to indicate deletion failure
         }
     }
+
+    @Override
+    public List<ClientDTO> getAllClients() {
+        List<ClientDTO> clients = new ArrayList<>();
+
+        try {
+            // Define the SQL query to retrieve all clients
+            String query = "SELECT * FROM client";
+
+            // Create a PreparedStatement to execute the query
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            // Execute the query
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Iterate through the result set and create ClientDTO objects
+            while (resultSet.next()) {
+                String firstName = resultSet.getString("firstname");
+                String lastName = resultSet.getString("lastname");
+                int phone = resultSet.getInt("phone");
+                Date birthdate = resultSet.getDate("birthdate");
+                String code = resultSet.getString("code");
+                String address = resultSet.getString("address");
+                // Add more fields as needed
+
+                // Create a ClientDTO object and add it to the list
+                ClientDTO client = new ClientDTO(code, address, firstName, lastName, birthdate, phone);
+                clients.add(client);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return clients;
+    }
+
+
 }
