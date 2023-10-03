@@ -5,7 +5,8 @@ import java.util.Date;
 public class ClientDTO extends UserDTO{
     private String code;
     private String address;
-    private int userId; // Assuming this is the reference to the associated user
+    private UserDTO userDTO;
+    private int userId;
 
     // Constructors
     public ClientDTO() {
@@ -30,6 +31,12 @@ public class ClientDTO extends UserDTO{
     public String getAddress() {
         return address;
     }
+    public void setUser(UserDTO userDTO){
+        this.userDTO = userDTO;
+    }
+    public UserDTO getUser(){
+        return userDTO;
+    }
 
     public void setAddress(String address) {
         this.address = address;
@@ -45,10 +52,10 @@ public class ClientDTO extends UserDTO{
 
     @Override
     public String toString() {
-        return "ClientDTO{" +
-                "code='" + code + '\'' +
+        return "code='" + code + '\'' +
                 ", address='" + address + '\'' +
-                ", userId=" + userId +
-                '}';
+                ", first name=" + firstName + '\'' +
+                ", last name=" + lastName + '\'' +
+                ", phone=" + phone;
     }
 }

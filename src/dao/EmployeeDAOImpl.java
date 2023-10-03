@@ -102,6 +102,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public EmployeeDTO getEmployeeByRegisterNumber(String registerNumber){
+//        List<EmployeeDTO> employees = new ArrayList<>();
         try {
             // Define the SQL query to retrieve an employee by registerNumber and join with User table
             String query = "SELECT e.registerNumber, e.recruitmentDate, e.email, u.firstName, u.lastName, u.birthDate, u.phone " +
@@ -127,18 +128,21 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                 int phone = resultSet.getInt("phone");
 
                 // Create and return an EmployeeDTO object with the retrieved data
-                return new EmployeeDTO(regNumber, recruitmentDate, email, firstName, lastName, birthDate, phone);
-            } else {
-                return null; // No employee found with the given registerNumber
+                EmployeeDTO employee = new EmployeeDTO(regNumber, recruitmentDate, email, firstName, lastName, birthDate, phone);
+                employee.setRegisterNumber(registerNumber);
+                return employee;
+            }else{
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return null; // Query execution failed
+            return null;
         }
     }
 
     @Override
     public List<EmployeeDTO> findEmployeesBySearchQuery(String searchQuery) {
+//        List<EmployeeDTO> employees = new ArrayList<>();
         try {
             if(Tools.isDate(searchQuery)){
                 Date dateSearch = Tools.stringToDate(searchQuery);

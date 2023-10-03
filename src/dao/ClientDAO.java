@@ -8,4 +8,5 @@ public interface ClientDAO {
     ClientDTO addClient(ClientDTO client);
     public int deleteClient(String code);
     List<ClientDTO> getAllClients();
+    public ClientDTO getClientByCode(String code);
 }

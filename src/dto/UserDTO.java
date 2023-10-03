@@ -3,11 +3,11 @@ package dto;
 import java.util.Date;
 
 public class UserDTO {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private Date birthDate;
-    private int phone;
+    protected int id;
+    protected String firstName;
+    protected String lastName;
+    protected Date birthDate;
+    protected int phone;
 
     // Constructors
     public UserDTO() {

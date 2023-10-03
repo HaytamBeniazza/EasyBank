@@ -106,5 +106,36 @@ public class ClientDAOImpl implements ClientDAO{
         return clients;
     }
 
+    @Override
+    public ClientDTO getClientByCode(String code) {
+        try {
+            String query = "SELECT * FROM client join useer on useer.id = client.userid WHERE code = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, code);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int userId = resultSet.getInt("userid"); // Assuming this is the reference to the associated user
+                // Add other client attributes here...
+                String firstName = resultSet.getString("firstname");
+                String lastName = resultSet.getString("lastname");
+                String address = resultSet.getString("address");
+                Date birthDate = resultSet.getDate("birthdate");
+                int phone = resultSet.getInt("phone");
+
+                ClientDTO client = new ClientDTO(code, address, firstName, lastName, birthDate, phone);
+                client.setUserId(userId);
+
+                return client;
+            } else {
+                return null; // Client with the given code not found
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; // Query execution failed
+        }
+    }
+
 
 }
