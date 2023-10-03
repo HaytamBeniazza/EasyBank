@@ -1,19 +1,15 @@
 package dto;
 
-import java.util.Date;
-
-public class ClientDTO extends UserDTO{
+public class ClientDTO {
     private String code;
     private String address;
-    private UserDTO userDTO;
-    private int userId;
+    private int userId; // Assuming this is the reference to the associated user
 
     // Constructors
     public ClientDTO() {
     }
 
-    public ClientDTO(String code, String address, String firstName, String lastName, Date birthDate, int phone) {
-        super(firstName, lastName, birthDate, phone);
+    public ClientDTO(String code, String address, int userId) {
         this.code = code;
         this.address = address;
         this.userId = userId;
@@ -31,12 +27,6 @@ public class ClientDTO extends UserDTO{
     public String getAddress() {
         return address;
     }
-    public void setUser(UserDTO userDTO){
-        this.userDTO = userDTO;
-    }
-    public UserDTO getUser(){
-        return userDTO;
-    }
 
     public void setAddress(String address) {
         this.address = address;
@@ -52,10 +42,10 @@ public class ClientDTO extends UserDTO{
 
     @Override
     public String toString() {
-        return "code='" + code + '\'' +
+        return "ClientDTO{" +
+                "code='" + code + '\'' +
                 ", address='" + address + '\'' +
-                ", first name=" + firstName + '\'' +
-                ", last name=" + lastName + '\'' +
-                ", phone=" + phone;
+                ", userId=" + userId +
+                '}';
     }
 }
